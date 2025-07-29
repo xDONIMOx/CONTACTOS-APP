@@ -1,14 +1,14 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 
-export default function TaskItem({ task, onTogle }) {
+export default function ContactItem({ contact, onTogle }) {
   return (
     <TouchableOpacity
       style={styles.row}
-      onPress={() => onTogle(task.id)}
+      onPress={() => onTogle(contact.id)}
     >
-      <Text style={[styles.text, task.completed && styles.done]}>
-        {task.completed ? '✅' : '⌛'} {task.title}
+      <Text style={[styles.text, contact.completed && styles.done]}>
+        {contact.completed ? '✅' : '⌛'} {contact.title}
       </Text>
     </TouchableOpacity>
   )
