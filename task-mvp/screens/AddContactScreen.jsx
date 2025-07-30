@@ -13,7 +13,8 @@ export default function AddContactScreen({ navigation, route }) {
   const [title, setTitle] = useState('');
   const [number, setNumber] = useState('');
 
-  // Recuperamos la función addTask pasada desde TaskListScreen
+  // Recuperamos la función addContact pasada desde ContactListScreen
+
   const { addContact } = route.params || {};
 
   const isTitleValid = title.trim().length >= 3;
@@ -89,15 +90,33 @@ export default function AddContactScreen({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
-  container:  { flex: 1, padding: 16, backgroundColor: '#fff' },
-  header:     { fontSize: 22, fontWeight: 'bold', marginBottom: 12 },
-  input:      {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 8,
-    borderRadius: 4,
-    marginBottom: 8,
+  container: { flex: 1, padding: 20, backgroundColor: '#f9f9f9' },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#333',
   },
-  errorText:  { color: 'red', marginBottom: 8 },
-  buttons:    { flexDirection: 'row', justifyContent: 'space-between' },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 10,
+    fontSize: 16,
+    backgroundColor: '#fff',
+  },
+  errorText: {
+    color: '#d9534f',
+    marginBottom: 10,
+    fontSize: 14,
+    textAlign: 'center',
+  },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 20,
+    paddingHorizontal: 10,
+  },
 });

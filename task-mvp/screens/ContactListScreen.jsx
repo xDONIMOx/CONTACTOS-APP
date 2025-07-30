@@ -35,7 +35,7 @@ export default function ContactListScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text>Contacts Master</Text>
+      <Text style={styles.appTitle}>Mis Contactos</Text>
       {/* Fila de botones de filtro */}
       <View style={styles.filterRow}>
         <Button
@@ -60,11 +60,12 @@ export default function ContactListScreen({ navigation }) {
             <Text
               style={[
                 styles.contactText,
-                contact.favorite ? styles.favoriteText : styles.favoriteText,
+                contact.favorite ? styles.favoriteText : styles.contactText,
               ]}
             >
-              {contact.title}
+              {contact.title}{' - '}
             </Text>
+            <Text style={styles.contactNumber}>{contact.number}</Text>
           </View>
         ))}
       </ScrollView>
@@ -80,13 +81,45 @@ export default function ContactListScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container:    { flex: 1, padding: 16, backgroundColor: '#fff' },
-  filterRow:    { flexDirection: 'row', justifyContent: 'space-around', marginBottom: 12 },
-  list:         { flex: 1, marginBottom: 12 },
-  contactRow:   { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
+  container:    { flex: 1, padding: 16, backgroundColor: '#ebebebff' },
+  appTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 20,
+    color: '#333',
+  },
+  filterRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 12,
+    backgroundColor: '#fff',
+    paddingVertical: 8,
+    borderRadius: 8,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+  },
+  list: { flex: 1, marginBottom: 12 },
+  contactRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 8,
+    elevation: 1,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.00,
+  },
   icon:         { fontSize: 18, marginRight: 8 },
   contactText:  { fontSize: 16 },
   favoriteText: { fontWeight: 'bold' },
+  contactNumber: { fontSize: 14, color: '#666' },
   createContactTouchable: {
     backgroundColor: '#007AFF',
     paddingVertical: 15,
