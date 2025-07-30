@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ContacListScreen from '../screens/ContactListScreen';
 import AddContactScreen from '../screens/AddContactScreen';
+import ContactListScreen from '../screens/ContactListScreen';
 
 const Stack = createStackNavigator();
 

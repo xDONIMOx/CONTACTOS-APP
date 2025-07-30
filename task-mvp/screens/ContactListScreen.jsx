@@ -8,8 +8,8 @@ import {
   StyleSheet
 } from 'react-native';
 
-export default function TaskListScreen({ navigation }) {
-  const [tasks, setTasks] = useState([
+export default function ContactListScreen({ navigation }) {
+  const [contacts, setContacts] = useState([
     { id: 1, title: 'Comprar leche', completed: false },
     { id: 2, title: 'Enviar email', completed: true },
     { id: 3, title: 'Leer documentación', completed: false },
@@ -17,26 +17,26 @@ export default function TaskListScreen({ navigation }) {
   const [filterMode, setFilterMode] = useState('all'); // 'all' | 'pending' | 'completed'
 
   // Función para añadir una nueva tarea al estado
-  const addTask = (task) => {
-    setTasks(prev => [...prev, task]);
+  const addContact = (contact) => {
+    setContacts(prev => [...prev, contact]);
   };
 
   // Derivar listado según filtro
-  let displayedTasks;
+  let displayedContacts;
   switch (filterMode) {
     case 'pending':
-      displayedTasks = tasks.filter(t => !t.completed);
+      displayedContacts = contacts.filter(t => !c.completed);
       break;
     case 'completed':
-      displayedTasks = tasks.filter(t => t.completed);
+      displayedContacts = contacts.filter(t => c.completed);
       break;
     default:
-      displayedTasks = tasks;
+      displayedContacts = contacts;
   }
 
   return (
     <View style={styles.container}>
-      <Text>Task Master</Text>
+      <Text>Contacts Master</Text>
       {/* Fila de botones de filtro */}
       <View style={styles.filterRow}>
         <Button
@@ -58,18 +58,18 @@ export default function TaskListScreen({ navigation }) {
 
       {/* Lista filtrada */}
       <ScrollView style={styles.list}>
-        {displayedTasks.map(task => (
-          <View key={task.id} style={styles.taskRow}>
+        {displayedContacts.map(contact => (
+          <View key={contact.id} style={styles.contactRow}>
             <Text style={styles.icon}>
-              {task.completed ? '✅' : '⌛️'}
+              {contact.completed ? '✅' : '⌛️'}
             </Text>
             <Text
               style={[
-                styles.taskText,
-                task.completed ? styles.completedText : styles.pendingText,
+                styles.contactText,
+                contact.completed ? styles.completedText : styles.pendingText,
               ]}
             >
-              {task.title}
+              {contact.title}
             </Text>
           </View>
         ))}
@@ -77,8 +77,8 @@ export default function TaskListScreen({ navigation }) {
 
       {/* Botón para crear nueva tarea, pasamos addTask */}
       <Button
-        title="Crear nueva tarea"
-        onPress={() => navigation.navigate('AddTask', { addTask })}
+        title="Crear nuevo contacto"
+        onPress={() => navigation.navigate('AddContact', { addContact })}
       />
     </View>
   );
@@ -88,9 +88,9 @@ const styles = StyleSheet.create({
   container:    { flex: 1, padding: 16, backgroundColor: '#fff' },
   filterRow:    { flexDirection: 'row', justifyContent: 'space-around', marginBottom: 12 },
   list:         { flex: 1, marginBottom: 12 },
-  taskRow:      { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
+  contactRow:   { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
   icon:         { fontSize: 18, marginRight: 8 },
-  taskText:     { fontSize: 16 },
+  contactText:  { fontSize: 16 },
   completedText:{ textDecorationLine: 'line-through', color: '#888' },
   pendingText:  { color: '#000' },
 });

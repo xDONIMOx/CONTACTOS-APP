@@ -9,11 +9,11 @@ import {
   Alert
 } from 'react-native';
 
-export default function AddTaskScreen({ navigation, route }) {
+export default function AddContactScreen({ navigation, route }) {
   const [title, setTitle] = useState('');
 
   // Recuperamos la función addTask pasada desde TaskListScreen
-  const { addTask } = route.params || {};
+  const { addContact } = route.params || {};
 
   const isValid = title.trim().length >= 3;
 
@@ -22,17 +22,17 @@ export default function AddTaskScreen({ navigation, route }) {
       Alert.alert('Error', 'El título debe tener al menos 3 caracteres.');
       return;
     }
-    const newTask = {
+    const newContact = {
       id: Date.now(),
       title: title.trim(),
       completed: false,
     };
 
     // Llamamos al callback sólo si existe
-    if (typeof addTask === 'function') {
-      addTask(newTask);
+    if (typeof addContact === 'function') {
+      addContact(newContact);
     } else {
-      console.warn('addTask no está definido');
+      console.warn('addContact no está definido');
     }
 
     navigation.goBack();
