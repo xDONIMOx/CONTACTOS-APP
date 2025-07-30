@@ -73,7 +73,7 @@ export default function ContactListScreen({ navigation }) {
         )))}
       </ScrollView>
 
-      {/* Botón para crear nueva tarea, pasamos addTask */}
+      {/* Botón para crear nueva tarea, pasamos addContact */}
       <TouchableOpacity 
       style={styles.createContactTouchable}
       onPress={() => navigation.navigate('addContact', { addContact })}>
@@ -105,7 +105,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
   },
-  list: { flex: 1, marginBottom: 12 },
+  list:       { 
+    flex: 1, 
+    marginBottom: 12 
+  },
   contactRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -119,9 +122,21 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.18,
     shadowRadius: 1.00,
   },
-  icon:         { fontSize: 18, marginRight: 8 },
-  contactText:  { fontSize: 16 },
-  favoriteText: { fontWeight: 'bold' },
+  icon:         { 
+    fontSize: 22, 
+    marginRight: 12 
+  },
+  contactText:  {
+    fontSize: 18,
+    color: '#333', 
+  },
+  contactNumber: { 
+    fontSize: 18,
+    color: '#000' 
+  },
+  favoriteText:   { 
+    fontWeight: 'bold' 
+  },
   
   createContactTouchable: {
     backgroundColor: '#007AFF',

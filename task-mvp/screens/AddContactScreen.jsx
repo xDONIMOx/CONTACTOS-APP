@@ -141,5 +141,23 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingHorizontal: 10,
   },
+  favoriteButton: {
+    backgroundColor: '#ffffffff',
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+  },
+  favoriteButtonActive: {
+    backgroundColor: '#ffffffff', 
+    borderColor: '#FFA500', 
+  },
+  favoriteButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333',
+  },
   
 });
