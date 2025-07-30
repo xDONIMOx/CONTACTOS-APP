@@ -47,31 +47,40 @@ export default function AddContactScreen({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Crear Nueva Tarea</Text>
+      <Text style={styles.header}>AGREGAR CONTACTO</Text>
 
       <TextInput
-        style={styles.input}
-        placeholder="Nombre (mín. 3 caracteres)"
-        value={title}
-        onChangeText={setTitle}
-      />
-
-      { !isTitleValid && title.length > 0 && (
-        <Text style={styles.errorText}>
-          El nombre debe tener al menos 3 caracteres.
-        </Text>
-      )}
+         style={styles.input}
+         placeholder="Nombre (mín. 3 caracteres)"
+         value={title}
+         onChangeText={setTitle}
+         
+        />
+      
+            {/* Mensaje de error para el nombre */}
+            {!isTitleValid && title.length > 0 && (
+              <Text style={styles.errorText}>
+                El nombre debe tener al menos 3 caracteres.
+              </Text>
+            )}
+      
+      <TextInput
+          style={styles.input}
+          placeholder="Número de Teléfono (mín. 7 dígitos)"
+          value={number}
+          onChangeText={setNumber}
+        />
 
       <View style={styles.buttons}>
         <Button
-          title="Agregar tarea"
+          title="Agregar contacto"
           onPress={handleAdd}
-          disabled={!isValid}
+          disabled={!isTitleValid}
         />
         { title.length > 0 && (
           <Button
             title="Limpiar"
-            onPress={() => setTitle('')}
+            onPress={() => {setTitle('');setNumber('')}}
           />
         )}
       </View>

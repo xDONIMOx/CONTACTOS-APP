@@ -11,7 +11,7 @@ export default function AppNavigator() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Contacts" component={ContactListScreen} />
-        <Stack.Screen name="AddContacts" component={AddContactScreen} />
+        <Stack.Screen name="addContact" component={AddContactScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

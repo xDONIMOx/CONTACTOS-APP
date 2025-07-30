@@ -5,7 +5,8 @@ import {
   Text,
   Button,
   ScrollView,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 
 export default function ContactListScreen({ navigation }) {
@@ -69,10 +70,11 @@ export default function ContactListScreen({ navigation }) {
       </ScrollView>
 
       {/* Botón para crear nueva tarea, pasamos addTask */}
-      <Button
-        title="Crear nuevo contacto"
-        onPress={() => navigation.navigate('AddContact', { addContact })}
-      />
+      <TouchableOpacity 
+      style={styles.createContactTouchable}
+      onPress={() => navigation.navigate('addContact', { addContact })}>
+              <Text style={styles.createContactButtonText}>Crear nuevo contacto</Text>
+            </TouchableOpacity>
     </View>
   );
 }
@@ -85,6 +87,27 @@ const styles = StyleSheet.create({
   icon:         { fontSize: 18, marginRight: 8 },
   contactText:  { fontSize: 16 },
   favoriteText: { fontWeight: 'bold' },
+  createContactTouchable: {
+    backgroundColor: '#007AFF',
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    marginBottom: 20,
+    marginTop: 10,
+    alignSelf: 'center',
+    width: '90%',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  createContactButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
 });
 
 
