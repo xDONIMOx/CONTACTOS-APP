@@ -1,4 +1,3 @@
-// screens/AddTaskScreen.jsx
 import React, { useState } from 'react';
 import {
   View,
@@ -6,12 +5,14 @@ import {
   TextInput,
   Button,
   StyleSheet,
-  Alert
+  Alert,
+  TouchableOpacity
 } from 'react-native';
 
 export default function AddContactScreen({ navigation, route }) {
   const [title, setTitle] = useState('');
   const [number, setNumber] = useState('');
+  const [isFavorite, setIsFavorite] = useState(false);
 
   // Recuperamos la función addContact pasada desde ContactListScreen
 
@@ -34,6 +35,7 @@ export default function AddContactScreen({ navigation, route }) {
       id: Date.now().toString(), 
       title: title.trim(),
       number: number.trim(),
+      favorite: isFavorite,
     };
 
     // Llamamos al callback sólo si existe
@@ -72,6 +74,26 @@ export default function AddContactScreen({ navigation, route }) {
           onChangeText={setNumber}
         />
 
+        {/* Mensaje de error para el número */}
+            {!isNumberValid && title.length > 0 && (
+              <Text style={styles.errorText}>
+                El número debe tener al menos 7 caracteres.
+              </Text>
+            )}
+
+
+        <TouchableOpacity
+                style={[
+                  styles.favoriteButton,
+                  isFavorite ? styles.favoriteButtonActive : null, 
+                ]}
+                onPress={() => setIsFavorite(!isFavorite)}
+              >
+                <Text style={styles.favoriteButtonText}>
+                  {isFavorite ? '⭐ Es Favorito' : '🤍 Marcar como Favorito'}
+                </Text>
+              </TouchableOpacity>
+
       <View style={styles.buttons}>
         <Button
           title="Agregar contacto"
@@ -81,7 +103,7 @@ export default function AddContactScreen({ navigation, route }) {
         { title.length > 0 && (
           <Button
             title="Limpiar"
-            onPress={() => {setTitle('');setNumber('')}}
+            onPress={() => {setTitle('');setNumber('');setIsFavorite(false);}}
           />
         )}
       </View>
@@ -119,4 +141,5 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingHorizontal: 10,
   },
+  
 });

@@ -1,4 +1,3 @@
-// screens/TaskListScreen.jsx
 import React, { useState } from 'react';
 import {
   View,
@@ -35,6 +34,7 @@ export default function ContactListScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      
       <Text style={styles.appTitle}>Mis Contactos</Text>
       {/* Fila de botones de filtro */}
       <View style={styles.filterRow}>
@@ -52,7 +52,10 @@ export default function ContactListScreen({ navigation }) {
 
       {/* Lista filtrada */}
       <ScrollView style={styles.list}>
-        {displayedContacts.map(contact => (
+        {displayedContacts.length === 0 ? (
+                  <Text style={styles.noContactsText}>No hay contactos para mostrar.</Text>
+                ) : (
+                  displayedContacts.map(contact => (
           <View key={contact.id} style={styles.contactRow}>
             <Text style={styles.icon}>
               {contact.favorite ? '⭐' : '👤'}
@@ -67,7 +70,7 @@ export default function ContactListScreen({ navigation }) {
             </Text>
             <Text style={styles.contactNumber}>{contact.number}</Text>
           </View>
-        ))}
+        )))}
       </ScrollView>
 
       {/* Botón para crear nueva tarea, pasamos addTask */}
@@ -119,7 +122,7 @@ const styles = StyleSheet.create({
   icon:         { fontSize: 18, marginRight: 8 },
   contactText:  { fontSize: 16 },
   favoriteText: { fontWeight: 'bold' },
-  contactNumber: { fontSize: 14, color: '#666' },
+  
   createContactTouchable: {
     backgroundColor: '#007AFF',
     paddingVertical: 15,
@@ -141,7 +144,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  noContactsText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
+    color: '#888',
+  },
 });
 
 
-// aqui voy a explicar git, otra vez
