@@ -11,21 +11,28 @@ import {
 
 export default function AddContactScreen({ navigation, route }) {
   const [title, setTitle] = useState('');
+  const [number, setNumber] = useState('');
 
   // Recuperamos la función addTask pasada desde TaskListScreen
   const { addContact } = route.params || {};
 
-  const isValid = title.trim().length >= 3;
+  const isTitleValid = title.trim().length >= 3;
+  const isNumberValid = number.trim().length >= 7;
+  const isFormValid = isTitleValid && isNumberValid;
 
   const handleAdd = () => {
-    if (!isValid) {
-      Alert.alert('Error', 'El título debe tener al menos 3 caracteres.');
-      return;
-    }
+      if (!isFormValid) {
+        Alert.alert(
+          'Error de Validación',
+          'Por favor, asegúrate de que el nombre tenga al menos 3 caracteres y el número de teléfono al menos 7 dígitos.'
+        );
+        return;
+      }
+
     const newContact = {
-      id: Date.now(),
+      id: Date.now().toString(), 
       title: title.trim(),
-      completed: false,
+      number: number.trim(),
     };
 
     // Llamamos al callback sólo si existe
@@ -44,14 +51,14 @@ export default function AddContactScreen({ navigation, route }) {
 
       <TextInput
         style={styles.input}
-        placeholder="Título de la tarea (mín. 3 caracteres)"
+        placeholder="Nombre (mín. 3 caracteres)"
         value={title}
         onChangeText={setTitle}
       />
 
-      { !isValid && title.length > 0 && (
+      { !isTitleValid && title.length > 0 && (
         <Text style={styles.errorText}>
-          El título debe tener al menos 3 caracteres.
+          El nombre debe tener al menos 3 caracteres.
         </Text>
       )}
 

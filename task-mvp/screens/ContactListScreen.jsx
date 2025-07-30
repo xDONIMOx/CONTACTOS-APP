@@ -10,11 +10,12 @@ import {
 
 export default function ContactListScreen({ navigation }) {
   const [contacts, setContacts] = useState([
-    { id: 1, title: 'Comprar leche', completed: false },
-    { id: 2, title: 'Enviar email', completed: true },
-    { id: 3, title: 'Leer documentación', completed: false },
+    { id: '1', title: 'Javier', number: '3204567890', favorite: false },
+    { id: '2', title: 'Carlos', number: '3136543210', favorite: true },
+    { id: '3', title: 'Omar', number: '3191234567', favorite: false },
+    { id: '4', title: 'Camila', number: '1112223333', favorite: true },
   ]);
-  const [filterMode, setFilterMode] = useState('all'); // 'all' | 'pending' | 'completed'
+  const [filterMode, setFilterMode] = useState('all'); // 'all' | 'favorites' 
 
   // Función para añadir una nueva tarea al estado
   const addContact = (contact) => {
@@ -24,11 +25,8 @@ export default function ContactListScreen({ navigation }) {
   // Derivar listado según filtro
   let displayedContacts;
   switch (filterMode) {
-    case 'pending':
-      displayedContacts = contacts.filter(t => !c.completed);
-      break;
-    case 'completed':
-      displayedContacts = contacts.filter(t => c.completed);
+    case 'favorite':
+      displayedContacts = contacts.filter(c => c.favorite);
       break;
     default:
       displayedContacts = contacts;
@@ -45,14 +43,9 @@ export default function ContactListScreen({ navigation }) {
           color={filterMode === 'all' ? '#007AFF' : undefined}
         />
         <Button
-          title="Pendientes"
-          onPress={() => setFilterMode('pending')}
-          color={filterMode === 'pending' ? '#007AFF' : undefined}
-        />
-        <Button
-          title="Completadas"
-          onPress={() => setFilterMode('completed')}
-          color={filterMode === 'completed' ? '#007AFF' : undefined}
+          title="Favoritos"
+          onPress={() => setFilterMode('favorite')}
+          color={filterMode === 'favorite' ? '#007AFF' : undefined}
         />
       </View>
 
@@ -61,12 +54,12 @@ export default function ContactListScreen({ navigation }) {
         {displayedContacts.map(contact => (
           <View key={contact.id} style={styles.contactRow}>
             <Text style={styles.icon}>
-              {contact.completed ? '✅' : '⌛️'}
+              {contact.favorite ? '⭐' : '👤'}
             </Text>
             <Text
               style={[
                 styles.contactText,
-                contact.completed ? styles.completedText : styles.pendingText,
+                contact.favorite ? styles.favoriteText : styles.favoriteText,
               ]}
             >
               {contact.title}
@@ -91,8 +84,7 @@ const styles = StyleSheet.create({
   contactRow:   { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
   icon:         { fontSize: 18, marginRight: 8 },
   contactText:  { fontSize: 16 },
-  completedText:{ textDecorationLine: 'line-through', color: '#888' },
-  pendingText:  { color: '#000' },
+  favoriteText: { fontWeight: 'bold' },
 });
 
 
